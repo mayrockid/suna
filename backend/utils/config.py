@@ -176,7 +176,11 @@ class Configuration:
     OPENROUTER_API_KEY: Optional[str] = None
     OPENROUTER_API_BASE: Optional[str] = "https://openrouter.ai/api/v1"
     OR_SITE_URL: Optional[str] = "https://kortix.ai"
-    OR_APP_NAME: Optional[str] = "Kortix AI"    
+    OR_APP_NAME: Optional[str] = "Kortix AI"
+
+    DEEPSEEK_API_KEY: Optional[str] = None
+    KTRANS_API_KEY: Optional[str] = None
+    KTRANS_API_BASE: Optional[str] = "http://192.168.1.181:10002/v1"
     
     # AWS Bedrock credentials
     AWS_ACCESS_KEY_ID: Optional[str] = None

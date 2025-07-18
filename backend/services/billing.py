@@ -1125,9 +1125,6 @@ async def get_available_models(
 ):
     """Get the list of models available to the user based on their subscription tier."""
     try:
-        # Get Supabase client
-        db = DBConnection()
-        client = await db.client
         
         # Check if we're in local development mode
         if config.ENV_MODE == EnvMode.LOCAL:
@@ -1152,6 +1149,10 @@ async def get_available_models(
                 "subscription_tier": "Local Development",
                 "total_models": len(model_info)
             }
+
+        # Get Supabase client
+        db = DBConnection()
+        client = await db.client
         
         # For non-local mode, get list of allowed models for this user
         allowed_models = await get_allowed_models_for_user(client, current_user_id)

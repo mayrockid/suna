@@ -1,4 +1,24 @@
-FROM node:20-slim
+FROM node:20
+
+RUN --mount=type=cache,target=/var/lib/apt,id=node20_apt_cache <<APT bash
+    set -e
+#    apt update
+#    apt install -y --no-install-recommends ca-certificates
+    cat>/etc/apt/sources.list.d/debian.sources<<EOF
+Types: deb
+URIs: https://mirrors.tuna.tsinghua.edu.cn/debian
+Suites: bookworm bookworm-updates
+Components: main
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+Types: deb
+URIs: http://deb.debian.org/debian-security
+Suites: bookworm-security
+Components: main
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+EOF
+    apt update
+APT
 
 WORKDIR /app
 
@@ -19,7 +39,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     librsvg2-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN npm install
+RUN npm install --registry=https://registry.npmmirror.com
 
 # Copy the frontend code
 COPY . .

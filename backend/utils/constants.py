@@ -49,7 +49,7 @@ MODEL_ACCESS_TIERS = {
         "openrouter/deepseek/deepseek-chat",
         # "xai/grok-3-mini-fast-beta",
         "openai/gpt-4o",
-        
+
         # "openai/gpt-4-turbo",
         # "xai/grok-3-fast-latest",
         "openrouter/google/gemini-2.5-flash-preview-05-20",  # Added
@@ -178,4 +178,11 @@ MODEL_NAME_ALIASES = {
     # "deepseek/deepseek-r1": "openrouter/deepseek/deepseek-r1",
     # "qwen/qwen3-235b-a22b": "openrouter/qwen/qwen3-235b-a22b",
     # "xai/grok-3-mini-fast-beta": "xai/grok-3-mini-fast-beta",  # Commented out in constants.py
+
+    "deepseek-chat": "deepseek/deepseek-chat",
+    "deepseek-reasoner": "deepseek/deepseek-reasoner",
+    "or:claude-sonnet-4": "openrouter/anthropic/claude-sonnet-4",
+    "or:deepseek-chat-v3-0324:free": "openrouter/deepseek/deepseek-chat-v3-0324:free",
+    "or:qwen3-235b-a22b:free": "openrouter/qwen/qwen3-235b-a22b:free",
+    "qwen3-32b": "openai/qwen3-32b",
 }
