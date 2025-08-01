@@ -96,7 +96,7 @@ export function useCachedFile<T = string>(
       // Use normalized path consistently
       const normalizedPath = normalizePath(filePath || '');
       
-      const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${sandboxId}/files/content`);
+      const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${sandboxId}/files/content`, window.location.origin);
       
       // Properly encode the path parameter for UTF-8 support
       url.searchParams.append('path', normalizedPath);
@@ -449,7 +449,7 @@ export const FileCache = {
       // Create a promise for this preload and store it
       const preloadPromise = (async () => {
         try {        
-          const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${sandboxId}/files/content`);
+          const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${sandboxId}/files/content`, window.location.origin);
           
           // Properly encode the path parameter for UTF-8 support
           url.searchParams.append('path', normalizedPath);
@@ -589,7 +589,7 @@ export async function getCachedFile(
   
   // Fetch fresh content
   try {
-    const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${sandboxId}/files/content`);
+    const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${sandboxId}/files/content`, window.location.origin);
     url.searchParams.append('path', normalizedPath);
     
     console.log(`[FILE CACHE] Fetching file: ${url.toString()}`);
@@ -679,7 +679,7 @@ export async function fetchFileContent(
   const attemptFetch = async (isRetry: boolean = false): Promise<string | Blob | any> => {
     try {
       // Prepare the API URL
-      const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${sandboxId}/files/content`;
+      const apiUrl = `${window.location.origin + process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${sandboxId}/files/content`;
       const url = new URL(apiUrl);
       url.searchParams.append('path', filePath);
       

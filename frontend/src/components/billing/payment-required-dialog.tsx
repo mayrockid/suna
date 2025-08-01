@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -10,12 +10,16 @@ import { Zap } from 'lucide-react';
 import { useModal } from '@/hooks/use-modal-store';
 import { PricingSection } from '../home/sections/pricing-section';
 
-const returnUrl = process.env.NEXT_PUBLIC_URL as string;
-
 export const PaymentRequiredDialog = () => {
     const { isOpen, type, onClose } = useModal();
     const isModalOpen = isOpen && type === 'paymentRequiredDialog';
     
+    const [returnUrl, setReturnUrl] = useState('');
+
+    useEffect(() => {
+      setReturnUrl(window.location.origin);
+    }, []);
+
     return (
       <Dialog open={isModalOpen} onOpenChange={onClose}>
         <DialogContent className="w-[95vw] max-w-[750px] max-h-[90vh] overflow-hidden flex flex-col p-0">

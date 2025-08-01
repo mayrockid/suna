@@ -257,6 +257,14 @@ def prepare_params(
         logger.debug(f"Preparing xAI parameters for model: {model_name}")
         # xAI models support standard parameters, no special handling needed beyond reasoning_effort
 
+    if model_name.lower().startswith('openai/qwen'):
+        params[
+            'api_base'] = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+        if params['stream']:
+            params['extra_body'] = {"enable_thinking": use_thinking}
+        else:
+            params['extra_body'] = {"enable_thinking": False}
+
     return params
 
 async def make_llm_api_call(

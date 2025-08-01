@@ -108,6 +108,79 @@ MODELS = {
         },
         "tier_availability": ["paid"]
     },   
+
+    ########################################
+    "deepseek/deepseek-chat": {
+        "aliases": ["deepseek-chat"],
+        "pricing": {
+            "input_cost_per_million_tokens": 0,
+            "output_cost_per_million_tokens": 0,
+        },
+        "tier_availability": ["free","paid"],
+    },
+
+    "deepseek/deepseek-reasoner": {
+        "aliases": ["deepseek-reasoner"],
+        "pricing": {
+            "input_cost_per_million_tokens": 0,
+            "output_cost_per_million_tokens": 0,
+        },
+        "tier_availability": ["free","paid"],
+    },
+
+    "openai/qwen3-32b": {
+        "aliases": ["qwen3-32b"],
+        "pricing": {
+            "input_cost_per_million_tokens": 0,
+            "output_cost_per_million_tokens": 0,
+        },
+        "tier_availability": ["free","paid"],
+    },
+
+    "openai/qwen3-coder-plus": {
+        "aliases": ["qwen3-coder-plus"],
+        "pricing": {
+            "input_cost_per_million_tokens": 0,
+            "output_cost_per_million_tokens": 0,
+        },
+        "tier_availability": ["free","paid"],
+    },
+
+    "openai/qwen3-coder-480b-a35b-instruct": {
+        "aliases": ["qwen3-coder-480b-a35b-instruct"],
+        "pricing": {
+            "input_cost_per_million_tokens": 0,
+            "output_cost_per_million_tokens": 0,
+        },
+        "tier_availability": ["free","paid"],
+    },
+
+    "openrouter/anthropic/claude-sonnet-4": {
+        "aliases": ["or:claude-sonnet-4"],
+        "pricing": {
+            "input_cost_per_million_tokens": 3.0,
+            "output_cost_per_million_tokens": 15.0,
+        },
+        "tier_availability": ["free","paid"],
+    },
+
+    "openrouter/deepseek/deepseek-chat-v3-0324:free": {
+        "aliases": ["or:deepseek-chat-v3-0324:free"],
+        "pricing": {
+            "input_cost_per_million_tokens": 0,
+            "output_cost_per_million_tokens": 0,
+        },
+        "tier_availability": ["free"],
+    },
+
+    "openrouter/qwen/qwen3-235b-a22b:free": {
+        "aliases": ["or:qwen3-235b-a22b:free"],
+        "pricing": {
+            "input_cost_per_million_tokens": 0,
+            "output_cost_per_million_tokens": 0,
+        },
+        "tier_availability": ["free"],
+    },
 }
 
 # Derived structures (auto-generated from MODELS)

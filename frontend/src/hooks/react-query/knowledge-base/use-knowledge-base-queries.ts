@@ -124,7 +124,7 @@ export function useAgentKnowledgeBaseEntries(agentId: string, includeInactive = 
     queryKey: knowledgeBaseKeys.agent(agentId),
     queryFn: async (): Promise<KnowledgeBaseListResponse> => {
       const headers = await getHeaders();
-      const url = new URL(`${API_URL}/knowledge-base/agents/${agentId}`);
+      const url = new URL(`${API_URL}/knowledge-base/agents/${agentId}`, window.location.origin);
       url.searchParams.set('include_inactive', includeInactive.toString());
       
       const response = await fetch(url.toString(), { headers });
@@ -181,7 +181,7 @@ export function useAgentKnowledgeBaseContext(agentId: string, maxTokens = 4000) 
     queryKey: knowledgeBaseKeys.agentContext(agentId),
     queryFn: async () => {
       const headers = await getHeaders();
-      const url = new URL(`${API_URL}/knowledge-base/agents/${agentId}/context`);
+      const url = new URL(`${API_URL}/knowledge-base/agents/${agentId}/context`, window.location.origin);
       url.searchParams.set('max_tokens', maxTokens.toString());
       
       const response = await fetch(url.toString(), { headers });

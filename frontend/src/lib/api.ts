@@ -985,7 +985,7 @@ export const streamAgent = (
         return;
       }
 
-      const url = new URL(`${API_URL}/agent-run/${agentRunId}/stream`);
+      const url = new URL(`${API_URL}/agent-run/${agentRunId}/stream`, window.location.origin);
       url.searchParams.append('token', session.access_token);
 
       console.log(`[STREAM] Creating EventSource for ${agentRunId}`);
@@ -1317,7 +1317,7 @@ export const listSandboxFiles = async (
       data: { session },
     } = await supabase.auth.getSession();
 
-    const url = new URL(`${API_URL}/sandboxes/${sandboxId}/files`);
+    const url = new URL(`${API_URL}/sandboxes/${sandboxId}/files`, window.location.origin);
     
     // Normalize the path to handle Unicode escape sequences
     const normalizedPath = normalizePathWithUnicode(path);
@@ -1366,7 +1366,7 @@ export const getSandboxFileContent = async (
       data: { session },
     } = await supabase.auth.getSession();
 
-    const url = new URL(`${API_URL}/sandboxes/${sandboxId}/files/content`);
+    const url = new URL(`${API_URL}/sandboxes/${sandboxId}/files/content`, window.location.origin);
     
     // Normalize the path to handle Unicode escape sequences
     const normalizedPath = normalizePathWithUnicode(path);

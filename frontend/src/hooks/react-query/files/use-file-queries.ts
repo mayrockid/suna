@@ -112,7 +112,7 @@ export async function fetchFileContent(
 ): Promise<string | Blob | any> {
   const normalizedPath = normalizePath(filePath);
   
-  const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${sandboxId}/files/content`);
+  const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${sandboxId}/files/content`, window.location.origin);
   url.searchParams.append('path', normalizedPath);
   
   console.log(`[FILE QUERY] Fetching ${contentType} content for: ${normalizedPath}`);
