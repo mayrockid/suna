@@ -6,8 +6,6 @@ import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useAccountBySlug } from '@/hooks/react-query';
 
-const returnUrl = process.env.NEXT_PUBLIC_URL as string;
-
 type AccountParams = {
   accountSlug: string;
 };
@@ -88,7 +86,7 @@ export default function TeamBillingPage({
 
       <AccountBillingStatus
         accountId={teamAccount.account_id}
-        returnUrl={`${returnUrl}/${accountSlug}/settings/billing`}
+        returnUrl={`${window.location.origin}/${accountSlug}/settings/billing`}
       />
     </div>
   );

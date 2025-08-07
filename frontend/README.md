@@ -18,8 +18,7 @@ The setup wizard automatically creates a `.env.local` file with the following co
 ```sh
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-NEXT_PUBLIC_BACKEND_URL=http://localhost:8000/api
-NEXT_PUBLIC_URL=http://localhost:3000
+NEXT_PUBLIC_BACKEND_URL=/backend/api
 NEXT_PUBLIC_ENV_MODE=LOCAL
 ```
 

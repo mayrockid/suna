@@ -1,15 +1,17 @@
+CNY_TO_USD = 0.14
+
 # Master model configuration - single source of truth
 MODELS = {
     # Free tier models
 
-    "anthropic/claude-sonnet-4-20250514": {
-        "aliases": ["claude-sonnet-4"],
-        "pricing": {
-            "input_cost_per_million_tokens": 3.00,
-            "output_cost_per_million_tokens": 15.00
-        },
-        "tier_availability": ["free", "paid"]
-    },
+    # "anthropic/claude-sonnet-4-20250514": {
+    #     "aliases": ["claude-sonnet-4"],
+    #     "pricing": {
+    #         "input_cost_per_million_tokens": 3.00,
+    #         "output_cost_per_million_tokens": 15.00
+    #     },
+    #     "tier_availability": ["free", "paid"]
+    # },
     # "openrouter/deepseek/deepseek-chat": {
     #     "aliases": ["deepseek"],
     #     "pricing": {
@@ -42,72 +44,207 @@ MODELS = {
     #     },
     #     "tier_availability": ["free", "paid"]
     # },
-    "openrouter/moonshotai/kimi-k2": {
-        "aliases": ["moonshotai/kimi-k2"],
-        "pricing": {
-            "input_cost_per_million_tokens": 1.00,
-            "output_cost_per_million_tokens": 3.00
-        },
-        "tier_availability": ["free", "paid"]
-    },
-    "xai/grok-4": {
-        "aliases": ["grok-4", "x-ai/grok-4"],
-        "pricing": {
-            "input_cost_per_million_tokens": 5.00,
-            "output_cost_per_million_tokens": 15.00
-        },
-        "tier_availability": ["paid"]
-    },
+    # "openrouter/moonshotai/kimi-k2": {
+    #     "aliases": ["moonshotai/kimi-k2"],
+    #     "pricing": {
+    #         "input_cost_per_million_tokens": 1.00,
+    #         "output_cost_per_million_tokens": 3.00
+    #     },
+    #     "tier_availability": ["free", "paid"]
+    # },
+    # "xai/grok-4": {
+    #     "aliases": ["grok-4", "x-ai/grok-4"],
+    #     "pricing": {
+    #         "input_cost_per_million_tokens": 5.00,
+    #         "output_cost_per_million_tokens": 15.00
+    #     },
+    #     "tier_availability": ["paid"]
+    # },
     
     # Paid tier only models
-    "gemini/gemini-2.5-pro": {
-        "aliases": ["google/gemini-2.5-pro"],
+    # "gemini/gemini-2.5-pro": {
+    #     "aliases": ["google/gemini-2.5-pro"],
+    #     "pricing": {
+    #         "input_cost_per_million_tokens": 1.25,
+    #         "output_cost_per_million_tokens": 10.00
+    #     },
+    #     "tier_availability": ["paid"]
+    # },
+    # "openai/gpt-4o": {
+    #     "aliases": ["gpt-4o"],
+    #     "pricing": {
+    #         "input_cost_per_million_tokens": 2.50,
+    #         "output_cost_per_million_tokens": 10.00
+    #     },
+    #     "tier_availability": ["paid"]
+    # },
+    # "openai/gpt-4.1": {
+    #     "aliases": ["gpt-4.1"],
+    #     "pricing": {
+    #         "input_cost_per_million_tokens": 15.00,
+    #         "output_cost_per_million_tokens": 60.00
+    #     },
+    #     "tier_availability": ["paid"]
+    # },
+    # "openai/gpt-4.1-mini": {
+    #     "aliases": ["gpt-4.1-mini"],
+    #     "pricing": {
+    #         "input_cost_per_million_tokens": 1.50,
+    #         "output_cost_per_million_tokens": 6.00
+    #     },
+    #     "tier_availability": ["paid"]
+    # },
+    # "anthropic/claude-3-7-sonnet-latest": {
+    #     "aliases": ["sonnet-3.7"],
+    #     "pricing": {
+    #         "input_cost_per_million_tokens": 3.00,
+    #         "output_cost_per_million_tokens": 15.00
+    #     },
+    #     "tier_availability": ["paid"]
+    # },
+    # "anthropic/claude-3-5-sonnet-latest": {
+    #     "aliases": ["sonnet-3.5"],
+    #     "pricing": {
+    #         "input_cost_per_million_tokens": 3.00,
+    #         "output_cost_per_million_tokens": 15.00
+    #     },
+    #     "tier_availability": ["paid"]
+    # },   
+
+    ################ DeepSeek ################
+    "deepseek/deepseek-chat": {
+        "aliases": ["deepseek-chat"],
         "pricing": {
-            "input_cost_per_million_tokens": 1.25,
-            "output_cost_per_million_tokens": 10.00
+            "input_cost_per_million_tokens": 0,
+            "output_cost_per_million_tokens": 0,
         },
-        "tier_availability": ["paid"]
+        "tier_availability": ["free","paid"],
     },
-    "openai/gpt-4o": {
-        "aliases": ["gpt-4o"],
+
+    "deepseek/deepseek-reasoner": {
+        "aliases": ["deepseek-reasoner"],
         "pricing": {
-            "input_cost_per_million_tokens": 2.50,
-            "output_cost_per_million_tokens": 10.00
+            "input_cost_per_million_tokens": 0,
+            "output_cost_per_million_tokens": 0,
         },
-        "tier_availability": ["paid"]
+        "tier_availability": ["free","paid"],
     },
-    "openai/gpt-4.1": {
-        "aliases": ["gpt-4.1"],
+
+    ################ Qwen ################
+
+    "openai/qwen3-235b-a22b": {
+        "aliases": ["qwen3-235b-a22b"],
         "pricing": {
-            "input_cost_per_million_tokens": 15.00,
-            "output_cost_per_million_tokens": 60.00
+            "input_cost_per_million_tokens": 0.002 * CNY_TO_USD * 1_000,
+            "output_cost_per_million_tokens": 0.02 * CNY_TO_USD * 1_000,
         },
-        "tier_availability": ["paid"]
+        "tier_availability": ["free","paid"],
     },
-    "openai/gpt-4.1-mini": {
-        "aliases": ["gpt-4.1-mini"],
+
+    "openai/qwen3-235b-a22b-thinking-2507": {
+        "aliases": ["qwen3-235b-a22b-thinking-2507"],
         "pricing": {
-            "input_cost_per_million_tokens": 1.50,
-            "output_cost_per_million_tokens": 6.00
+            "input_cost_per_million_tokens": 0.002 * CNY_TO_USD * 1_000,
+            "output_cost_per_million_tokens": 0.02 * CNY_TO_USD * 1_000,
         },
-        "tier_availability": ["paid"]
+        "tier_availability": ["free","paid"],
     },
-    "anthropic/claude-3-7-sonnet-latest": {
-        "aliases": ["sonnet-3.7"],
+
+    "openai/qwen3-235b-a22b-instruct-2507": {
+        "aliases": ["qwen3-235b-a22b-instruct-2507"],
         "pricing": {
-            "input_cost_per_million_tokens": 3.00,
-            "output_cost_per_million_tokens": 15.00
+            "input_cost_per_million_tokens": 0.002 * CNY_TO_USD * 1_000,
+            "output_cost_per_million_tokens": 0.008 * CNY_TO_USD * 1_000,
         },
-        "tier_availability": ["paid"]
+        "tier_availability": ["free","paid"],
     },
-    "anthropic/claude-3-5-sonnet-latest": {
-        "aliases": ["sonnet-3.5"],
+
+    "openai/qwen3-32b": {
+        "aliases": ["qwen3-32b"],
         "pricing": {
-            "input_cost_per_million_tokens": 3.00,
-            "output_cost_per_million_tokens": 15.00
+            "input_cost_per_million_tokens": 0.002 * CNY_TO_USD * 1_000,
+            "output_cost_per_million_tokens": 0.02 * CNY_TO_USD * 1_000,
         },
-        "tier_availability": ["paid"]
-    },   
+        "tier_availability": ["free","paid"],
+    },
+
+    "openai/qwen3-coder-plus": {
+        "aliases": ["qwen3-coder-plus"],
+        "pricing": {
+            "input_cost_per_million_tokens": 0.004 * CNY_TO_USD * 1_000,
+            "output_cost_per_million_tokens": 0.016 * CNY_TO_USD * 1_000,
+        },
+        "tier_availability": ["free","paid"],
+    },
+
+    "openai/qwen3-coder-plus-2025-07-22": {
+        "aliases": ["qwen3-coder-plus-2025-07-22"],
+        "pricing": {
+            "input_cost_per_million_tokens": 0.004 * CNY_TO_USD * 1_000,
+            "output_cost_per_million_tokens": 0.016 * CNY_TO_USD * 1_000,
+        },
+        "tier_availability": ["free","paid"],
+    },
+
+    "openai/qwen3-coder-480b-a35b-instruct": {
+        "aliases": ["qwen3-coder-480b-a35b-instruct"],
+        "pricing": {
+            "input_cost_per_million_tokens": 0.004 * CNY_TO_USD * 1_000,
+            "output_cost_per_million_tokens": 0.016 * CNY_TO_USD * 1_000,
+        },
+        "tier_availability": ["free","paid"],
+    },
+
+    ################ KTransformers ################
+
+    "openai/ktransformers": {
+        "aliases": ["ktransformers"],
+        "pricing": {
+            "input_cost_per_million_tokens": 0,
+            "output_cost_per_million_tokens": 0,
+        },
+        "tier_availability": ["free","paid"],
+    },
+
+    ################ vllm ################
+
+    "openai/vllm/qwen3-8b": {
+        "aliases": ["vllm:Qwen3-8B"],
+        "pricing": {
+            "input_cost_per_million_tokens": 0,
+            "output_cost_per_million_tokens": 0,
+        },
+        "tier_availability": ["free","paid"],
+    },
+
+    ################ OpenRouter ################
+
+    "openrouter/anthropic/claude-sonnet-4": {
+        "aliases": ["or:claude-sonnet-4"],
+        "pricing": {
+            "input_cost_per_million_tokens": 3.0,
+            "output_cost_per_million_tokens": 15.0,
+        },
+        "tier_availability": ["free","paid"],
+    },
+
+    "openrouter/deepseek/deepseek-chat-v3-0324:free": {
+        "aliases": ["or:deepseek-chat-v3-0324:free"],
+        "pricing": {
+            "input_cost_per_million_tokens": 0,
+            "output_cost_per_million_tokens": 0,
+        },
+        "tier_availability": ["free"],
+    },
+
+    "openrouter/qwen/qwen3-235b-a22b:free": {
+        "aliases": ["or:qwen3-235b-a22b:free"],
+        "pricing": {
+            "input_cost_per_million_tokens": 0,
+            "output_cost_per_million_tokens": 0,
+        },
+        "tier_availability": ["free"],
+    },
 }
 
 # Derived structures (auto-generated from MODELS)

@@ -66,6 +66,8 @@ dependencies = [
   "chardet==5.2.0",
   "PyYAML==6.0.1",
   "composio>=0.8.0",
+  "colorama>=0.4.6",
+  "rich>=14.0.0",
 ]
 
 [project.urls]
@@ -74,3 +76,8 @@ repository = "https://github.com/kortix-ai/suna"
 
 [tool.uv]
 package = false
+link-mode = "copy"
+
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true

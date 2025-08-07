@@ -6,8 +6,6 @@ import { useAccounts } from '@/hooks/use-accounts';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 
-const returnUrl = process.env.NEXT_PUBLIC_URL as string;
-
 export default function PersonalAccountBillingPage() {
   const { data: accounts, isLoading, error } = useAccounts();
 
@@ -57,7 +55,7 @@ export default function PersonalAccountBillingPage() {
     <div>
       <AccountBillingStatus
         accountId={personalAccount.account_id}
-        returnUrl={`${returnUrl}/settings/billing`}
+        returnUrl={`${window.location.origin}/settings/billing`}
       />
     </div>
   );

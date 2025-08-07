@@ -1,9 +1,34 @@
-FROM ghcr.io/astral-sh/uv:python3.11-alpine
+FROM astral/uv:python3.11-bookworm-slim
 
-ENV ENV_MODE production
+ENV ENV_MODE=production
 WORKDIR /app
 
-RUN apk add --no-cache curl git
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN --mount=type=cache,target=/var/lib/apt,id=bookworm_slim_apt_cache <<APT bash
+    set -e
+    cat>/etc/apt/sources.list.d/debian.sources<<EOF
+Types: deb
+URIs: https://mirrors.tuna.tsinghua.edu.cn/debian
+Suites: bookworm bookworm-updates bookworm-backports
+Components: main contrib non-free non-free-firmware
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+Types: deb
+URIs: https://security.debian.org/debian-security
+Suites: bookworm-security
+Components: main contrib non-free non-free-firmware
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+EOF
+    apt update
+    apt install --no-install-recommends --no-install-suggests -y \
+      curl git
+    apt autoremove --purge -y
+    apt autoclean
+APT
 
 # Install Python dependencies
 COPY pyproject.toml uv.lock ./
@@ -15,7 +40,7 @@ COPY . .
 
 # Calculate optimal worker count based on 16 vCPUs
 # Using (2*CPU)+1 formula for CPU-bound applications
-ENV WORKERS=7
+ENV WORKERS=65
 ENV THREADS=2
 ENV WORKER_CONNECTIONS=2000
 

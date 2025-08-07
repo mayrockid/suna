@@ -1,6 +1,24 @@
 # syntax=docker.io/docker/dockerfile:1
 # ---- Base Stage ----
-FROM node:22-slim AS base
+FROM node:22 AS base
+
+RUN --mount=type=cache,target=/var/lib/apt,id=node22_apt_cache <<APT bash
+  set -e
+  cat>/etc/apt/sources.list.d/debian.sources<<EOF
+Types: deb
+URIs: https://mirrors.tuna.tsinghua.edu.cn/debian
+Suites: bookworm bookworm-updates
+Components: main
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+Types: deb
+URIs: http://deb.debian.org/debian-security
+Suites: bookworm-security
+Components: main
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+EOF
+  apt update
+APT
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -21,7 +39,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libjpeg-dev \
     libgif-dev \
     librsvg2-dev \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && npm config set registry https://registry.npmmirror.com
 
 RUN \
   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \

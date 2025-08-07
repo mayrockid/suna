@@ -234,10 +234,24 @@ if __name__ == "__main__":
     workers = 4
     
     logger.info(f"Starting server on 0.0.0.0:8000 with {workers} workers")
-    uvicorn.run(
+    config = uvicorn.Config(
         "api:app", 
         host="0.0.0.0", 
         port=8000,
         workers=workers,
-        loop="asyncio"
+        loop="asyncio",
+        timeout_graceful_shutdown=5  # 设置优雅关闭超时
     )
+    server = uvicorn.Server(config)
+
+    # 注册信号处理函数
+    def handle_exit(sig, frame):
+        logger.debug("Received shutdown signal. Stopping server...")
+        server.should_exit = True  # 触发 Uvicorn 优雅关闭
+
+    import signal
+
+    signal.signal(signal.SIGINT, handle_exit)  # Ctrl+C
+    signal.signal(signal.SIGTERM, handle_exit)  # kill 命令
+
+    server.run()

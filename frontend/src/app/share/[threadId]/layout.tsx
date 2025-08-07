@@ -7,12 +7,12 @@ export async function generateMetadata({ params }): Promise<Metadata> {
     title: 'Shared Conversation | Kortix Suna',
     description: 'Replay this Agent conversation on Kortix Suna',
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_URL}/share/${threadId}`,
+      canonical: `${window.location.origin}/share/${threadId}`,
     },
     openGraph: {
       title: 'Shared Conversation | Kortix Suna',
       description: 'Replay this Agent conversation on Kortix Suna',
-      images: [`${process.env.NEXT_PUBLIC_URL}/share-page/og-fallback.png`],
+      images: [`${window.location.origin}/share-page/og-fallback.png`],
     },
   };
 
@@ -34,14 +34,14 @@ export async function generateMetadata({ params }): Promise<Metadata> {
       projectData.description ||
       'Replay this Agent conversation on Kortix Suna';
     const ogImage = isDevelopment
-      ? `${process.env.NEXT_PUBLIC_URL}/share-page/og-fallback.png`
-      : `${process.env.NEXT_PUBLIC_URL}/api/share-page/og-image?title=${projectData.name}`;
+      ? `${window.location.origin}/share-page/og-fallback.png`
+      : `${window.location.origin}/api/share-page/og-image?title=${projectData.name}`;
 
     return {
       title,
       description,
       alternates: {
-        canonical: `${process.env.NEXT_PUBLIC_URL}/share/${threadId}`,
+        canonical: `${window.location.origin}/share/${threadId}`,
       },
       openGraph: {
         title,

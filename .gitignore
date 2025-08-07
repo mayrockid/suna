@@ -204,3 +204,7 @@ dump.rdb
 
 # CodeWebChat state and logs (auto-added)
 .cwc/
+
+.vscode
+.idea
+backend/logs

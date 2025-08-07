@@ -1318,6 +1318,7 @@ class SetupWizard:
                     ["docker", "compose", "ps"],
                     capture_output=True,
                     text=True,
+                    encoding='utf-8',
                     shell=IS_WINDOWS,
                 )
                 if "backend" in result.stdout and "frontend" in result.stdout:

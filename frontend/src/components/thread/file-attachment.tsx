@@ -132,7 +132,7 @@ function getFileUrl(sandboxId: string | undefined, path: string): string {
         console.error('Error processing Unicode escapes in path:', e);
     }
 
-    const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${sandboxId}/files/content`);
+    const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${sandboxId}/files/content`, window.location.origin);
 
     // Properly encode the path parameter for UTF-8 support
     url.searchParams.append('path', path);
